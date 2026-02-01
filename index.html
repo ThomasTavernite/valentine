@@ -181,35 +181,35 @@
         </div>
 
         <div class="buttons" id="buttonGroup">
-            <button id="yesBtn" onclick="nextQuestion()">YES! 💕</button>
-            <button id="noBtn" onclick="sayNo()">No...</button>
+            <button id="yesBtn" onclick="startQuestions()">Okay! 💕</button>
         </div>
 
         <div class="hidden" id="response"></div>
     </div>
 
     <script>
-        let currentQuestion = 0;
+        let currentQuestion = -1;
         let noClickCount = 0;
+        let questionsStarted = false;
 
         const questions = [
             {
-                title: "First Question! 🐱",
+                title: "💕",
                 text: "am i cuter than these cats? (pls be honest)",
                 noResponse: "Ouch! But the cats appreciate your honesty 🐱"
             },
             {
-                title: "Question #2! 😻",
+                title: "😻",
                 text: "do you love spending time with me? (i love spending time w you)",
                 noResponse: "I don't believe you! 💕"
             },
             {
-                title: "Question #3! 😎",
+                title: "😎",
                 text: "do you think im young rich and handsome?",
                 noResponse: "The cats think I am! 😸"
             },
             {
-                title: "The BIG Question! 💕",
+                title: "💕",
                 text: "WILL YOU BE MY VALENTINE? ❤️‍🔥",
                 noResponse: "Pretty please? 🥺"
             }
@@ -232,6 +232,15 @@
         function meow() {
             const meows = ['Meow! 😺', 'Purr~ 😻', 'Nya! 🐱', 'Mrow! 😸'];
             alert(meows[Math.floor(Math.random() * meows.length)]);
+        }
+
+        function startQuestions() {
+            questionsStarted = true;
+            document.getElementById('buttonGroup').innerHTML = `
+                <button id="yesBtn" onclick="nextQuestion()">YES! 💕</button>
+                <button id="noBtn" onclick="sayNo()">No...</button>
+            `;
+            nextQuestion();
         }
 
         function nextQuestion() {
